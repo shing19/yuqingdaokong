@@ -1,4 +1,15 @@
+import os
 import configparser
+
+
+config = configparser.ConfigParser()
+path = os.path.split(os.path.realpath(__file__))[0] + '/config.ini'
+config.read(path)
+
+
+#获取config配置文件
+def get_config(section, key):
+    return config.get(section, key)
 
 
 def get_dict(name):
@@ -11,12 +22,8 @@ def get_dict(name):
 
 # 这个还没写
 def get_url():
-    search_reply_url = self.get('search', 'search_reply_url')
+    search_reply_url = config.get('search', 'search_reply_url')
     return search_reply_url
-
-
-config = configparser.ConfigParser()
-config.read('./config.ini')
 
 
 if __name__ == '__main__':
